@@ -1,0 +1,45 @@
+
+<!--index.wxml-->
+<view class="container">
+  <view bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <view class="useraudio">
+    <audio poster="{{poster}}" name="{{name}}" author="{{author}}" src="{{src}}" id="myAudio" bindplay="bindAudioPlay" bindpause="bindAudioPause" bindtimeupdate="bindAudioTimeUpdate" controls loop></audio>
+  </view>
+  <view class="audioCtrl">
+    <block wx:if="{{playing === true}}">
+      <view class="page-body-button" bindtap="audioPause">
+        <image src="/image/pause.png"></image>
+      </view>
+    </block>
+    <block wx:if="{{playing === false}}">
+      <view class="page-body-button" bindtap="audioPlay">
+        <image src="/image/play.png"></image>
+      </view>
+    </block>
+    <view class="page-body-info">
+      <slider class="slider" min="0" max="401" step="1" value="{{playTime}}" bindchange="seek"></slider>
+      <view class="play-time">
+        <text>{{curPos}}</text>
+        <text>{{duration}}</text>
+      </view>
+    </view>
+    <view class="page-body-button" bindtap="audioStart">
+      <image src="/image/refresh.png"></image>
+    </view>
+
+    <!--button type="primary" bindtap="audioPlay">播放</button>
+    <button type="primary" bindtap="audioPause">暂停</button>
+    <button type="primary" bindtap="audio14">14s</button>
+    <button type="primary" bindtap="audioStart">重置</button-->
+  </view>
+
+  <!--view bindtap="openHomePage" class="userexperience">
+    <button class="user-experience">{{experience}}</button>
+  </view-->
+</view>

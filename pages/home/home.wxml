@@ -1,0 +1,6 @@
+<!--home.wxml-->
+<view class="container">
+  <view class="homemotto">
+    <text class="home-motto">{{homemotto}}</text>
+  </view>
+</view>
