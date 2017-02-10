@@ -1,0 +1,4 @@
+/**link.wxss**/
+.linkmotto {
+  margin-top: 100px;
+}

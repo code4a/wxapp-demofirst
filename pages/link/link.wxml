@@ -1,0 +1,6 @@
+<!--link.wxml-->
+<view class="container">
+  <view class="linkmoto">
+    <text class="link-motto">{{linkmotto}}</text>
+  </view>
+</view>

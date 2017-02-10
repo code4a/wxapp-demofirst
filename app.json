@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/home/home"
+    "pages/home/home",
+    "pages/link/link"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -17,18 +18,23 @@
     "backgroundColor": "#ffffff",
     "list": [{
       "pagePath": "pages/index/index",
-      "iconPath": "image/icon_API.png",
-      "selectedIconPath": "image/icon_API_HL.png",
+      "iconPath": "image/welcome_default.png",
+      "selectedIconPath": "image/welcome_selected.png",
       "text": "欢迎页"
     }, {
       "pagePath": "pages/home/home",
-      "iconPath": "image/icon_component.png",
-      "selectedIconPath": "image/icon_component_HL.png",
+      "iconPath": "image/home_default.png",
+      "selectedIconPath": "image/home_selected.png",
       "text": "主页"
     }, {
+      "pagePath": "pages/link/link",
+      "iconPath": "image/link_default.png",
+      "selectedIconPath": "image/link_selected.png",
+      "text": "链接"
+    }, {
       "pagePath": "pages/logs/logs",
-      "iconPath": "image/icon_API.png",
-      "selectedIconPath": "image/icon_API_HL.png",
+      "iconPath": "image/log_default.png",
+      "selectedIconPath": "image/log_selected.png",
       "text": "日志"
     }]
   }
