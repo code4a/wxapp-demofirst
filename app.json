@@ -1,41 +1,51 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
     "pages/logs/logs",
     "pages/home/home",
     "pages/link/link"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "DemoFirst",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "color": "#7A7E83",
     "selectedColor": "#3cc51f",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "iconPath": "image/welcome_default.png",
-      "selectedIconPath": "image/welcome_selected.png",
-      "text": "欢迎页"
-    }, {
-      "pagePath": "pages/home/home",
-      "iconPath": "image/home_default.png",
-      "selectedIconPath": "image/home_selected.png",
-      "text": "主页"
-    }, {
-      "pagePath": "pages/link/link",
-      "iconPath": "image/link_default.png",
-      "selectedIconPath": "image/link_selected.png",
-      "text": "链接"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "iconPath": "image/log_default.png",
-      "selectedIconPath": "image/log_selected.png",
-      "text": "日志"
-    }]
-  }
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "image/welcome_default.png",
+        "selectedIconPath": "image/welcome_selected.png",
+        "text": "欢迎页"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "iconPath": "image/home_default.png",
+        "selectedIconPath": "image/home_selected.png",
+        "text": "主页"
+      },
+      {
+        "pagePath": "pages/link/link",
+        "iconPath": "image/link_default.png",
+        "selectedIconPath": "image/link_selected.png",
+        "text": "链接"
+      },
+      {
+        "pagePath": "pages/logs/logs",
+        "iconPath": "image/log_default.png",
+        "selectedIconPath": "image/log_selected.png",
+        "text": "日志"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true
 }

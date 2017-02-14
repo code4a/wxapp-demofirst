@@ -73,5 +73,11 @@ Page({
         userInfo:userInfo
       })
     })
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '欢迎页面分享',
+      path: '/pages/index/index'
+    }
   }
 })
