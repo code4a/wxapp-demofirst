@@ -83,19 +83,34 @@ Page({
   },
   loadGankData: function(index){
     var that = this;
-    var url = 'http://gank.io/api/data/'+ this.getGankApiType(index) +'/10/1';
-    
-    network_util._get(url,
-      function (res) {
-        // console.log(res.data);
-        that.setData({
-          list: res.data.results,
-          // hidden: true,
+    if(index != 2){
+      var url = 'http://gank.io/api/data/'+ this.getGankApiType(index) +'/10/1';
+      
+      network_util._get(url,
+        function (res) {
+          // console.log(res.data);
+          that.setData({
+            list: res.data.results,
+            // hidden: true,
+          });
+        }, 
+        function (res) {
+          console.log(res);
         });
-      }, 
-      function (res) {
-        console.log(res);
-      });
+    }else{
+      var url = 'http://api.budejie.com/api/api_open.php?a=list&c=data&type=41';
+      network_util._get(url,
+        function (res) {
+          // console.log(res.data);
+          that.setData({
+            list: res.data.list,
+            // hidden: true,
+          });
+        }, 
+        function (res) {
+          console.log(res);
+        });
+    }
   },
 
   getGankApiType: function(index){
@@ -105,7 +120,7 @@ Page({
       case 1:
         return 'iOS'
       case 2:
-        return '休闲视频'
+        return '休息视频'
       case 3:
         return '拓展资源'
       case 4:

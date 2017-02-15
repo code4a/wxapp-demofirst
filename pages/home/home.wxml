@@ -1,3 +1,4 @@
+
 <!--home.wxml-->
 
 <!--<loading hidden="{{!loading}}">
@@ -9,12 +10,12 @@
 </loading>-->
 <view class="container">
   <scroll-view scroll-y="true" class="page-body" bindscrolltolower="loadMore">
+
     <!--banner-->
     <view class="swiper">
-      <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}" 
-              autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+      <swiper indicator-dots="{{indicatorDots}}" vertical="{{vertical}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
         <block wx:for="{{movies}}" wx:for-index="index">
-          <swiper-item>
+          <swiper-item bindtap="picDetail">
             <block wx:if="{{item}}">
               <image src="{{item.url}}" mode="aspectFill" />
             </block>
@@ -29,8 +30,7 @@
     <!--nav-->
     <view class="nav_top">
       <block wx:for="{{navTopItems}}" wx:key="item.id">
-        <view class="nav_top_items {{curNavId == item.id ? 'active_'+colors[index] : ''}}" 
-              bindtap="switchTab" data-index="{{index}}" data-id="{{item.id}}">
+        <view class="nav_top_items {{curNavId == item.id ? 'active_'+colors[index] : ''}}" bindtap="switchTab" data-index="{{index}}" data-id="{{item.id}}">
           <image src="{{item.icon}}" mode="aspectFill"></image>
           <text>{{item.title}}</text>
         </view>
@@ -41,31 +41,68 @@
     <view class="nav_section">
       <view wx:if="{{list}}">
         <block wx:for="{{list}}" wx:key="item._id">
-              <view class="nav_section_items" >
-                  <!--image-->
-                  <view class="section_image" bindtap="navigateDetail" data-aid="{{item._id}}">
-                  <block wx:if="{{item.images[0]}}">
-                      <!--<image src="{{item.images[0]}}" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>-->
-                      <image src="../../image/default_error.jpg" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>
-                  </block>
-                  <block wx:else>
-                      <image src="../../image/default_pic.png" mode="aspectFill"></image>
-                  </block>
-                  </view>
-                  <!--content-->
-                  <view class="section_cont" bindtap="navigateDetail" data-aid="{{item._id}}">
-                      <view class="section_cont_desc">
-                          <text>{{item.desc}}</text>
-                      </view>
-                      <view class="section_cont_auth">作者：{{item.who ? item.who : '无'}}</view>
-                      <view>{{item.publishedAt}}</view>
-                  </view>
-                  <!--book-->
-                  <view class="section_book" bindtap="bookTap" data-aid="{{item._id}}">
-                          <text>详情</text>
-                  </view>
+          <block wx:if="{{item.type == 41}}">
+            <!--<view>休息视频: {{item.type}}</view>-->
+            <view class="nav_section_video_items">
+
+              <!--video-->
+              <view class="section_video" data-aid="{{item.id}}">
+                <block wx:if="{{item.videouri}}">
+                  <video id="{{item.id}}" src="{{item.videouri}}"  bindplay="videoPlay" bindended="videoEndPlay" catchtap="tapVideo" controls style="width:600rpx;height:400rpx;"  objectFit></video>
+                </block>
+                <block wx:else>
+                  <image src="../../image/default_pic.png" mode="aspectFill"></image>
+                </block>
               </view>
+
+              <!--content-->
+              <view class="section_cont" data-aid="{{item.id}}">
+                <view class="section_cont_desc">
+                  <text>{{item.text}}</text>
+                </view>
+                <view class="section_cont_auth_type">
+                  <view class="section_cont_auth">作者：{{item.name ? item.name : '无'}}</view>
+                  <view class="section_cont_type">类型：视频</view>
+                </view>
+                <view>{{item.passtime}}</view>
+              </view>
+            </view>
           </block>
+          <block wx:else>
+            <view class="nav_section_items" bindtap="navigateDetail">
+
+              <!--image-->
+              <view class="section_image" data-aid="{{item._id}}">
+                <block wx:if="{{item.images[0]}}">
+
+                  <!--<image src="{{item.images[0]}}" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>-->
+                  <image src="../../image/default_error.jpg" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>
+                </block>
+                <block wx:else>
+                  <image src="../../image/default_pic.png" mode="aspectFill"></image>
+                </block>
+              </view>
+
+              <!--content-->
+              <view class="section_cont" data-aid="{{item._id}}">
+                <view class="section_cont_desc">
+                  <text>{{item.desc}}</text>
+                </view>
+                <view class="section_cont_auth_type">
+                  <view class="section_cont_auth">作者：{{item.who ? item.who : '无'}}</view>
+                  <view class="section_cont_type">类型：{{item.type}}</view>
+                </view>
+                <view>{{item.publishedAt}}</view>
+              </view>
+
+              <!--book-->
+
+              <!--<view class="section_book" bindtap="bookTap" data-aid="{{item._id}}">
+                          <text>详情</text>
+                  </view>-->
+            </view>
+          </block>
+        </block>
       </view>
       <view wx:else>暂无数据</view>
     </view>
