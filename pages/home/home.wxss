@@ -21,6 +21,8 @@
 }
 
 .nav_top_items{
+    display:flex;
+    flex-direction: column;
     text-align: center;
     font-size:24rpx;
     width:100rpx;
@@ -28,8 +30,9 @@
     box-sizing:border-box;
 }
 .nav_top_items image{
-    width:88rpx;
-    height:93rpx;
+    width:64rpx;
+    height:64rpx;
+    margin: 4rpx auto;
     display: inline-block;
 }
 .nav_top .active{
