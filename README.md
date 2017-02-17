@@ -30,3 +30,7 @@
 
 ![主页效果图](pic4readme/pic2.png)
 ![主页视频效果图](pic4readme/pic3.png)
+
+### 致谢
+
+![目前为止最全的微信小程序项目实例](http://blog.csdn.net/zuoliangzhu/article/details/53862576)
