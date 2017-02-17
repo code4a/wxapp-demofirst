@@ -33,6 +33,7 @@
 
 ### 致谢
 
-[目前为止最全的微信小程序项目实例](http://blog.csdn.net/zuoliangzhu/article/details/53862576)
-[干货集中营 API 文档](http://gank.io/api)
-[阿里巴巴矢量图标库](http://www.iconfont.cn/plus/collections/index?spm=a313x.7781069.1998910419.3.oS4Wxy)
+* [目前为止最全的微信小程序项目实例](http://blog.csdn.net/zuoliangzhu/article/details/53862576)
+* [干货集中营 API 文档](http://gank.io/api)
+* [阿里巴巴矢量图标库](http://www.iconfont.cn/plus/collections/index?spm=a313x.7781069.1998910419.3.oS4Wxy)
+* [百思不得姐视频Api](http://api.budejie.com/api/api_open.php?a=list&c=data&type=41)
