@@ -1,12 +1,28 @@
 
 <!--index.wxml-->
 <view class="container">
+  <image class="main-bg" src="../../image/bg2.jpg"></image>
+  <view class="city">{{city}}</view>
   <view bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+  <view class="userwather">
+    <view class="today">
+        <view class="info">
+            <view class="temp">{{temp}}</view>
+            <view class="weather-img">
+                <image src="{{todayDayImg}}" class="today-img"></image>
+                <image src="{{todayNightImg}}" class="today-img"></image>
+            </view>
+            <view class="weather">{{weather}}</view>      
+        </view>
+        <view class='time'>
+            <view class="today-time">{{todayTime}}</view>
+            <view class="today-date">{{todayDate}}</view>
+        </view>
+    </view>
+    <!--<text class="user-motto">{{motto}}</text>-->
   </view>
   <view class="audio_info">
     <view class="useraudio">

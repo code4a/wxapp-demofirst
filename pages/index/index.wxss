@@ -1,6 +1,15 @@
 /**index.wxss**/
+.main-bg{
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:-1;
+    height:100%;
+    width:100%;
+    opacity:0.6;
+}
 .userinfo {
-  margin-top: 100rpx;
+  margin-top: 60rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,13 +23,67 @@
 }
 
 .userinfo .userinfo-nickname {
-  color: #aaa;
+  color: #fff;
 }
 
-.usermotto {
-  margin-top: 200rpx;
-  height: 200rpx;
+.userwather {
+  position:relative;
+  color:#fff;
+  font-family:"Microsoft Yahei","宋体";
+  font-size:32rpx;
+  margin-top: 6rpx;
+  height: 400rpx;
+  width: 100%;
 }
+
+.today{
+    height:100%;
+    width: 100%;
+}
+.info{
+    padding:10rpx;
+}
+.temp{
+    font-size:64rpx;
+    text-align:center;
+}
+.weather-img{
+    padding:10rpx;
+    text-align:center;
+}
+.today-img{
+    display:inline-block;
+    width: 66rpx;
+    height: 40rpx;
+}
+.city{
+    margin-left: 20rpx;
+    margin-right: auto;
+    margin-top:10rpx;
+    color: #fff;
+    font-size:40rpx;
+    text-align:left;
+}
+.weather{
+    font-size:16px;
+    text-align:center;
+}
+.time{
+    margin-top: 20rpx;
+    position:absolute;
+    width:100%;
+    font-family:'Yahei light';
+}
+.today-time{
+    padding:4rpx;
+    font-size:40rpx;
+    text-align:center;
+}
+.today-date{
+    font-size:40rpx;
+    text-align:center;
+}
+
 .audio_info{
   flex: 1;
 }

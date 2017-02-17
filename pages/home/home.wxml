@@ -1,14 +1,5 @@
-
 <!--home.wxml-->
 <import src="../common/mainTabCell.wxml" />
-
-<!--<loading hidden="{{!loading}}">
-	{{title}}
-</loading>-->
-
-<!--<loading hidden="{{hidden}}" bindchange="loadingChange">
-  加载中...
-</loading>-->
 <view class="container">
 
   <!--banner-->
@@ -55,61 +46,4 @@
       <template is="mainTabCell" data="{{dataList: list['web']}}" />
     </swiper-item>
   </swiper>
-
-  <!--<scroll-view scroll-y="true" class="page-body" bindscrolltolower="loadMore">-->
-
-  <!--list-->
-
-  <!--<view class="nav_section">-->
-
-  <!--<view wx:if="{{list}}">-->
-
-  <!--<block wx:for="{{itemList}}" wx:key="item._id">-->
-
-  <!--<block wx:if="{{item.type == 41}}">-->
-
-  <!--<view>休息视频: {{item.type}}</view>-->
-
-  <!--<view class="nav_section_video_items">-->
-
-  <!--video-->
-
-  <!--<view class="section_video" data-aid="{{item.id}}">-->
-
-  <!--<block wx:if="{{item.videouri}}">
-                  <video id="{{item.id}}" src="{{item.videouri}}" bindplay="videoPlay" 
-                        bindended="videoEndPlay" catchtap="tapVideo" controls style="width:600rpx;height:400rpx;" objectFit></video>
-                </block>
-                <block wx:else>
-                  <image src="../../image/default_pic.png" mode="aspectFill"></image>
-                </block>
-              </view>-->
-
-  <!--content-->
-
-  <!--<view class="section_cont" data-aid="{{item.id}}">
-                <view class="section_cont_desc">
-                  <text>{{item.text}}</text>
-                </view>
-                <view class="section_cont_auth_type">
-                  <view class="section_cont_auth">作者：{{item.name ? item.name : '无'}}</view>
-                  <view class="section_cont_type">类型：视频</view>
-                </view>
-                <view>{{item.passtime}}</view>
-              </view>
-            </view>
-          </block>
-          <block wx:else>
-            <navigator url="{{item.url}}">
-              <template is="mainTabCell" data="{{item}}" />
-            </navigator>
-          </block>
-        </block>
-        <include src="../common/loadmore.wxml" />-->
-
-  <!--</view>
-      <view wx:else>暂无数据</view>-->
-
-  <!--</view>
-  </scroll-view>-->
 </view>
