@@ -1,10 +1,11 @@
 //home.js
 var network_util = require('../../utils/network_util.js');
-var json_util = require('../../utils/json_util.js');
-var md5 = require('../../utils/md5.js');
 var util = require('../../utils/util.js');
 var api_data = require('../../utils/api_data.js');
-var order = ['red', 'yellow', 'blue', 'green', 'red']
+
+var curPageIndex = [1, 1, 1, 1, 1]
+var tabInitState = [false, false, false, false, false]
+
 Page({
   data: {
     colors: ['red', 'orange', 'yellow', 'green', 'purple'],
@@ -13,35 +14,14 @@ Page({
     autoplay: true,
     interval: 3000,
     duration: 1000,
-    movies: api_data.getBannerData(),
+    banners: api_data.getBannerData(),
     navTopItems: api_data.getIndexNavData(),
+    list: {},
     curNavId: 1,
     curIndex: 0
-    // // text:"这是一个页面"
-    // list: [],
-    // dd: '',
-    // hidden: false,
-    // page: 1,
-    // size: 20,
-    // hasMore: true,
-    // hasRefesh: false,
-    // homemotto: '欢迎进入我的主页'
   },
   onLoad: function (options) {
-    var that = this;
-    // var url = 'http://gank.io/api/data/Android/10/1';
-    // network_util._get(url,
-    //   function (res) {
-    //     // console.log(res.data);
-    //     that.setData({
-    //       list: res.data.results,
-    //       // hidden: true,
-    //     });
-    //   }, 
-    //   function (res) {
-    //     console.log(res);
-    //   });
-    this.loadGankData(0);
+    this.checkInitLoadGankData()
   },
   onReady: function () {
     // 页面渲染完成
@@ -55,18 +35,23 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-  //点击事件处理
-  bindViewTap: function (e) {
-    console.log(e.currentTarget.dataset.title);
-  },
 
   imageOnLoad(ev){
     console.log('图片加载成功！width: ${ev.detail.width}; height: ${ev.detail.height}');
   },
   imageOnLoadError(){
     console.log('图片加载失败！');
-    this.setData()({
-    })
+  },
+  refreshPic: function(){
+    console.log('refreshPic！');
+    var that = this;
+    this.data.banners = api_data.refreshBannerData(
+      function (res) {
+          console.log(res);
+          that.setData({
+            banners: res
+          })
+        })
   },
   //标签切换
   switchTab: function(e) {
@@ -74,25 +59,33 @@ Page({
       index = parseInt(e.currentTarget.dataset.index)
       this.curIndex = parseInt(e.currentTarget.dataset.index)
       console.log(e)
-      var that = this
       this.setData({
         curNavId: id,
-        curIndex: index,
+        curIndex: index
       })
-      this.loadGankData(index);
-  },
-  loadGankData: function(index){
-    var that = this;
-    if(index != 2){
-      var url = 'http://gank.io/api/data/'+ this.getGankApiType(index) +'/10/1';
+      this.checkInitLoadGankData()
       
+  },
+  // swiper 滚动改变监听
+  onBindchange: function(e) {
+    console.log(e)
+    this.checkInitLoadGankData()
+    this.setData({
+      curNavId: e.detail.current + 1, 
+      curIndex: e.detail.current
+    })
+  },
+  // 加载干货数据和百思不得姐数据
+  loadGankData: function(pageNo, callback){
+    if(this.data.curIndex != 2){
+      var url= 'http://gank.io/api/data/' + this.getClassifyName(true) + '/10/' + pageNo;
       network_util._get(url,
         function (res) {
-          // console.log(res.data);
-          that.setData({
-            list: res.data.results,
-            // hidden: true,
-          });
+          // 格式化日期
+          res.data.results.map(gankInfo => {
+            gankInfo.publishedAt = util.formatSimpleTime(gankInfo.publishedAt)
+          })
+          callback(res.data.results)
         }, 
         function (res) {
           console.log(res);
@@ -101,70 +94,56 @@ Page({
       var url = 'http://api.budejie.com/api/api_open.php?a=list&c=data&type=41';
       network_util._get(url,
         function (res) {
-          // console.log(res.data);
-          that.setData({
-            list: res.data.list,
-            // hidden: true,
-          });
+          callback(res.data.list)
         }, 
         function (res) {
           console.log(res);
         });
     }
   },
-
-  getGankApiType: function(index){
-    switch(index){
+  /**
+   * 获取分类名称
+   * @param isApiName 是否是干货api需要的请求 url 名称
+   */
+  getClassifyName: function(isApiName) {
+    switch(this.data.curIndex) {
       case 0:
-        return 'Android'
+        return isApiName ? 'Android' : 'android'
       case 1:
-        return 'iOS'
+        return isApiName ? 'iOS' : 'ios'
       case 2:
-        return '休息视频'
+        return isApiName ? '休息视频' : 'video'
       case 3:
-        return '拓展资源'
+        return isApiName ? '拓展资源' : 'more'
       case 4:
-        return '前端'
+        return isApiName ? '前端' : 'web'
     }
+  },
+  // 检查初始化加载干货数据（根据不同类别）
+  checkInitLoadGankData: function() {
+    if (tabInitState[this.data.curIndex]) return
+
+    var curClassifyName = this.getClassifyName()
+    this.loadGankData(1, results => {
+      curPageIndex[this.data.curIndex] = 2
+      this.data.list[curClassifyName] = results
+      this.setData({
+        list: this.data.list
+      })
+      tabInitState[this.data.curIndex] = true
+    })
   },
   //加载更多
   loadMore: function (e) {
-    var that = this;
-    that.setData({
-      hasRefesh: true,
-    });
-    if (!this.data.hasMore) return
-    var url = 'http://v.juhe.cn/weixin/query?key=f16af393a63364b729fd81ed9fdd4b7d&pno=' + (++that.data.page) + '&ps=10';
-    network_util._get(url,
-      function (res) {
-        that.setData({
-          list: that.data.list.concat(res.data.result.list),
-          hidden: true,
-          hasRefesh: false,
-        });
-      }, function (res) {
-        console.log(res);
+    var curClassifyName = this.getClassifyName()
+    this.loadGankData(curPageIndex[this.data.curIndex], results => {
+      curPageIndex[this.data.curIndex] ++
+      this.data.list[curClassifyName] = this.data.list[curClassifyName].concat(results)
+      this.setData({
+        list: this.data.list
       })
+    })
   },
-  // //刷新处理
-  // refesh: function (e) {
-  //   var that = this;
-  //   that.setData({
-  //     hasRefesh: true,
-  //   });
-  //   var url = 'http://v.juhe.cn/weixin/query?key=f16af393a63364b729fd81ed9fdd4b7d&pno=1&ps=10';
-  //   network_util._get(url,
-  //     function (res) {
-  //       that.setData({
-  //         list: res.data.result.list,
-  //         hidden: true,
-  //         page: 1,
-  //         hasRefesh: false,
-  //       });
-  //     }, function (res) {
-  //       console.log(res);
-  //     })
-  // },
   upper: function (e) {
     console.log(e)
   },

@@ -1,16 +1,47 @@
 
 <!--link.wxml-->
+
+<!--<import src="../common/mainTabCell.wxml" />
 <view class="container">
   <view class="img_wrap">
     <image wx:if="{{ imgUrl }}" src="{{ imgUrl }}" />
   </view>
   <button bindtap="loadImage">Click To Load Image</button>
-  <view class="msg">{{ msg }}</view>
+  <view class="msg">{{ msg }}</view>-->
 
-  <!-- 引入图片预加载组件 -->
-  <import src="../../img-loader/img-loader.wxml" />
+<!-- 引入图片预加载组件 -->
+
+<!--  <import src="../../img-loader/img-loader.wxml" />
   <template is="img-loader" data="{{ imgLoadList }}"></template>
   <view class="linkmoto">
     <text class="link-motto">{{linkmotto}}</text>
   </view>
+  <scroll-view class="scrollView" scroll-y="true" bindscrolltolower="loadMoreData">
+    <block wx:for="{{allDataList}}" wx:for-item="item">
+      <navigator url="{{item.url}}">
+        <template is="mainTabCell" data="{{item}}" />
+      </navigator>
+    </block>
+  </scroll-view>
+</view>-->
+<import src="link-template.wxml" />
+<view class="container">
+  <loading hidden="{{loadingHidden}}">加载中...</loading>
+  <view class="title-tabs-bar-container">
+    <text bindtap="onTitleBarsClick0" class="title-tabs-bar-tab-text {{curSelClassifyIndex == 0 ? 'title-tabs-bar-tab-text-selected' : ''}}">Android</text>
+    <text bindtap="onTitleBarsClick1" class="title-tabs-bar-tab-text {{curSelClassifyIndex == 1 ? 'title-tabs-bar-tab-text-selected' : ''}}">iOS</text>
+    <text bindtap="onTitleBarsClick2" class="title-tabs-bar-tab-text {{curSelClassifyIndex == 2 ? 'title-tabs-bar-tab-text-selected' : ''}}">前端</text>
+  </view>
+  <swiper class="content_list" bindchange="onBindchange" current="{{curSelClassifyIndex}}">
+    <swiper-item>
+      <template is="gankList" data="{{gankDataList: gankData['android']}}" />
+      <!--<template is="gankList" data="{{gankDataList: gankData['android']}}" />-->
+    </swiper-item>
+    <swiper-item>
+      <template is="gankList" data="{{gankDataList: gankData['ios']}}" />
+    </swiper-item>
+    <swiper-item>
+      <template is="gankList" data="{{gankDataList: gankData['web']}}" />
+    </swiper-item>
+  </swiper>
 </view>

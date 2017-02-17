@@ -1,4 +1,5 @@
 /**link.wxss**/
+/*@import "../common/mainTabCell.wxss";
 
 .linkmotto {
   margin-top: 100px;
@@ -19,4 +20,60 @@ image {
 .msg {
   margin: 10px 0;
   text-align: center;
+}
+
+.scrollView{
+  height: 100%;
+  background-color: #eaeaea;
+}*/
+.title-tabs-bar-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  background:url(../../image/black_line.png) repeat;
+  align-items: center;
+  justify-content: center;
+}
+
+.title-tabs-bar-tab-text {
+  width: 150rpx;
+  font-size: 30rpx;
+  color: #FFFFFF;
+  padding-top: 5rpx;
+  padding-bottom: 5rpx;
+  text-align: center;
+}
+
+.title-tabs-bar-tab-text-selected {
+  border-width: 2rpx;
+  border-color: #FFFFFF;
+  border-style: solid;
+  border-radius: 20rpx;
+}
+
+.content_list{
+  flex: 1;
+  width:100%;
+}
+
+.item-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20rpx;
+  padding-left: 10rpx;
+  padding-right: 10rpx;
+}
+
+.item-other-info-container {
+  display: flex;
+  flex-direction: row;
+  color: #999999;
+  font-size: 26rpx;
+  margin-top: 20rpx;
+}
+
+.title {
+  color: #000000;
+  font-size: 33rpx;
 }

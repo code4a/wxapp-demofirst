@@ -1,10 +1,10 @@
 /**home.wxss**/
-
-.swiper {
+@import "../common/mainTabCell.wxss";
+.banner_swiper {
   width: 100%;
 }
 
-.swiper image {
+.banner_swiper image {
   display: inline;
 }
 
@@ -24,7 +24,7 @@
     display:flex;
     flex-direction: column;
     text-align: center;
-    font-size:24rpx;
+    font-size:20rpx;
     width:100rpx;
     border-radius:8rpx;
     box-sizing:border-box;
@@ -57,8 +57,9 @@
 /* 导航对应内容项 */
 .nav_section{
     width:100%;
+    flex: 1;
 }
-.nav_section_items{
+/*.nav_section_items{
     display:flex;
     flex-direction: row;
     justify-content: space-between;
@@ -116,10 +117,10 @@
     font-size:24rpx;
     color:#4a4a4a;
     text-align: right;
-}
+}*/
 
 
-.nav_section_video_items{
+/*.nav_section_video_items{
     display:flex;
     flex-direction: column;
     justify-content: space-between;
@@ -187,4 +188,4 @@
     font-size:24rpx;
     color:#4a4a4a;
     text-align: right;
-}
+}*/

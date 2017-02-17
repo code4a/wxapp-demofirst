@@ -1,0 +1,94 @@
+<template name="mainTabCell">
+    <scroll-view scroll-y="true" bindscrolltolower="loadMore" style="height: 100%; background-color: #FFF;">
+      <navigator url="" wx:for="{{dataList}}" wx:for-item="dataInfo" wx:key="*this">
+        <block wx:if="{{dataInfo.type == 41}}">
+
+          <!--<view>休息视频: {{item.type}}</view>-->
+          <view class="nav_video_items">
+
+            <!--video-->
+            <view class="nav_video" data-aid="{{dataInfo.id}}">
+              <block wx:if="{{dataInfo.videouri}}">
+                <video id="{{dataInfo.id}}" src="{{dataInfo.videouri}}" bindplay="videoPlay" 
+                      bindended="videoEndPlay" catchtap="tapVideo" controls style="width:600rpx;height:400rpx;" objectFit></video>
+              </block>
+              <block wx:else>
+                <image src="../../image/default_pic.png" mode="aspectFill"></image>
+              </block>
+            </view>
+
+            <!--content-->
+            <view class="video_cont" data-aid="{{dataInfo.id}}">
+              <view class="video_cont_desc">
+                <text>{{dataInfo.text}}</text>
+              </view>
+              <view class="video_cont_auth_type">
+                <view class="video_cont_auth">作者：{{dataInfo.name ? dataInfo.name : '无'}}</view>
+                <view class="video_cont_type">类型：视频</view>
+              </view>
+              <view>{{dataInfo.passtime}}</view>
+            </view>
+          </view>
+        </block>
+        <block wx:else>
+          <view class="nav_gank_items">
+
+            <!--左边图片-->
+            <view class="left_img" data-aid="{{dataInfo._id}}">
+              <block wx:if="{{dataInfo.images[0]}}">
+
+                <!--<image src="{{item.images[0]}}" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>-->
+                <image src="../../image/default_error.jpg" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>
+              </block>
+              <block wx:else>
+                <image src="../../image/default_pic.png" mode="aspectFill"></image>
+              </block>
+            </view>
+
+            <!--内容-->
+            <view class="content">
+              <view class="cont_desc">
+                <text>{{dataInfo.desc}}</text>
+              </view>
+              <view class="cont_auth_type">
+                <view class="cont_auth">作者：{{dataInfo.who ? dataInfo.who : '无'}}</view>
+                <view class="cont_type">类型：{{dataInfo.type}}</view>
+              </view>
+              <view>{{dataInfo.publishedAt}}</view>
+            </view>
+          </view>
+        </block>
+      </navigator>
+      <include src="../common/loadmore.wxml" />
+    </scroll-view>
+
+  <!-- <view class="mainTabCell">-->
+
+  <!--左边图片-->
+
+  <!--<view class="left_img" data-aid="{{item._id}}">
+      <block wx:if="{{item.images[0]}}">-->
+
+  <!--<image src="{{item.images[0]}}" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>-->
+
+  <!--  <image src="../../image/default_error.jpg" bindload="imageOnLoad" binderror="imageOnLoadError" mode="aspectFill"></image>
+      </block>
+      <block wx:else>
+        <image src="../../image/default_pic.png" mode="aspectFill"></image>
+      </block>
+    </view>-->
+
+  <!--内容-->
+
+  <!--<view class="content">
+      <view class="cont_desc">
+        <text>{{item.desc}}</text>
+      </view>
+      <view class="cont_auth_type">
+        <view class="cont_auth">作者：{{item.who ? item.who : '无'}}</view>
+        <view class="cont_type">类型：{{item.type}}</view>
+      </view>
+      <view>{{item.publishedAt}}</view>
+    </view>
+  </view>-->
+</template>
