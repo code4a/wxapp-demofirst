@@ -5,6 +5,7 @@ var api_data = require('../../utils/api_data.js');
 
 var curPageIndex = [1, 1, 1, 1, 1]
 var tabInitState = [false, false, false, false, false]
+var budejieMaxtime = null
 
 Page({
   data: {
@@ -92,8 +93,16 @@ Page({
         });
     }else{
       var url = 'http://api.budejie.com/api/api_open.php?a=list&c=data&type=41';
+      if(budejieMaxtime == null){
+          url = 'http://api.budejie.com/api/api_open.php?a=list&c=data&type=41';
+      }else{
+          url = 'http://api.budejie.com/api/api_open.php?a=list&c=data&type=41&page='+pageNo+'&maxtime=' + budejieMaxtime;
+      }
+      // console.log(url)
       network_util._get(url,
         function (res) {
+          // console.log(res.data.info.maxtime)
+          budejieMaxtime = res.data.info.maxtime
           callback(res.data.list)
         }, 
         function (res) {
