@@ -33,4 +33,4 @@
 
 ### 致谢
 
-![目前为止最全的微信小程序项目实例](http://blog.csdn.net/zuoliangzhu/article/details/53862576)
+[目前为止最全的微信小程序项目实例](http://blog.csdn.net/zuoliangzhu/article/details/53862576)
